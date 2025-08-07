@@ -1,0 +1,14 @@
+export const v0 = "Zobraziť všetky bal\xedky";
+export const __FramerMetadata__ = {
+    "exports": {
+        "v0": {
+            "type": "variable",
+            "annotations": {
+                "framerContractVersion": "1"
+            }
+        },
+        "__FramerMetadata__": {
+            "type": "variable"
+        }
+    }
+}

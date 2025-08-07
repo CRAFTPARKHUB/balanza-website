@@ -1,0 +1,2 @@
+import{ck as i}from"https://app.framerstatic.com/chunk-YIQ5HVZM.mjs";var s=f(i);function p(e){let o=[],n=!1;for(let t of e)t.explicitInter||(n||o.push(...s),n=!0),o.push(...t.fonts);return o}function f(e){let o=[];for(let n of e)if(n.subsets)for(let t of n.subsets){let r={url:t.file,family:n.familyName,style:n.style,weight:n.weight!==void 0?String(n.weight):void 0,source:"framer",unicodeRange:t.unicodeRange};r.variationAxes=n.variationAxes,o.push(r)}return o}export{p as a};
+//# sourceMappingURL=https://app.framerstatic.com/chunk-O3DFIQHJ.mjs.map

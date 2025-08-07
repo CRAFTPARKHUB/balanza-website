@@ -1,0 +1,143 @@
+import {
+    jsx as _jsx
+} from "react/jsx-runtime";
+import {
+    addPropertyControls,
+    ControlType,
+    RenderTarget
+} from "framer";
+import {
+    createPortal
+} from "react-dom";
+import {
+    useEffect,
+    useState
+} from "react";
+import {
+    hasFrameshipAccess,
+    parseFrameshipData,
+    useCartStore
+} from "https://framerusercontent.com/modules/ibjYTPLnMMPhPLNCj4uG/cXa4uUn5VWWAcoaQctVU/Cart.js";
+import {
+    UPGRADE_LINK
+} from "https://framerusercontent.com/modules/gd3dcT3w5rYoRy7ZcKte/sH6FZizM8jJ11j2dQOhQ/Shared.js";
+import FrameshipUpgradeBanner from "https://framerusercontent.com/modules/b6p2QQlcwhhLAA5Operm/erpgLSZm2BuxCMM1NCPK/LOQtD1uPa.js";
+/**
+ * @framerSupportedLayoutWidth auto
+ * @framerSupportedLayoutHeight auto
+ * @framerDisableUnlink
+ */
+export default function Frameship(props) {
+    const isCanvas = RenderTarget.current() === RenderTarget.canvas;
+    const [portalContainer, setPortalContainer] = useState(null);
+    const initializeCart = useCartStore(state => state.initializeCart);
+    useEffect(() => {
+        initializeCart ? .();
+    }, []);
+    const attributes = {};
+    let stagingDomain = "";
+    let productionDomain = "";
+    if (props.frameshipData) {
+        attributes["data-frameship-id"] = props.frameshipData;
+        const frameshipData = parseFrameshipData(props.frameshipData);
+        stagingDomain = frameshipData.stagingDomain;
+        productionDomain = frameshipData.productionDomain;
+    } else {
+        attributes["data-frameship-component"] = true;
+        if (props.shopUrl) {
+            attributes["data-shop-url"] = props.shopUrl;
+        }
+        if (props.shopifyAccessToken) {
+            attributes["data-shopify-access-token"] = props.shopifyAccessToken;
+        }
+        if (props.productionDomain) {
+            attributes["data-production-domain"] = props.productionDomain;
+        }
+        if (props.stagingDomain) {
+            attributes["data-staging-domain"] = props.stagingDomain;
+        }
+        stagingDomain = props.stagingDomain;
+        productionDomain = props.productionDomain;
+    }
+    const hasAccess = hasFrameshipAccess(stagingDomain, productionDomain);
+    useEffect(() => {
+        if (!isCanvas) {
+            const container = document.createElement("div");
+            document.body.appendChild(container);
+            setPortalContainer(container);
+            return () => {
+                document.body.removeChild(container);
+            };
+        }
+    }, []);
+    return /*#__PURE__*/ _jsx("div", { ...attributes,
+        children: !isCanvas && portalContainer && !hasAccess && /*#__PURE__*/ createPortal( /*#__PURE__*/ _jsx("div", {
+            style: {
+                position: "fixed",
+                left: 20,
+                bottom: 20
+            },
+            children: /*#__PURE__*/ _jsx(FrameshipUpgradeBanner, {
+                link: UPGRADE_LINK
+            })
+        }), portalContainer)
+    });
+}
+Frameship.displayName = "Frameship (Shopify)";
+addPropertyControls(Frameship, {
+    frameshipData: {
+        type: ControlType.String,
+        defaultValue: "",
+        preventLocalization: true,
+        hidden: () => true
+    },
+    shopUrl: {
+        type: ControlType.String,
+        defaultValue: "",
+        title: "Shop URL",
+        preventLocalization: true,
+        hidden: () => true
+    },
+    shopifyAccessToken: {
+        type: ControlType.String,
+        defaultValue: "",
+        preventLocalization: true,
+        hidden: () => true
+    },
+    productionDomain: {
+        type: ControlType.String,
+        defaultValue: "",
+        preventLocalization: true,
+        hidden: () => true
+    },
+    stagingDomain: {
+        type: ControlType.String,
+        defaultValue: "",
+        preventLocalization: true,
+        hidden: () => true
+    },
+    note: {
+        type: ControlType.Enum,
+        options: ["IMPORTANT"],
+        displaySegmentedControl: true,
+        description: "*Do not delete this component.*\n\nThis component is managed by the [Frameship plugin](https://framer.link/L3dGFQc)"
+    }
+});
+export const __FramerMetadata__ = {
+    "exports": {
+        "default": {
+            "type": "reactComponent",
+            "name": "Frameship",
+            "slots": [],
+            "annotations": {
+                "framerSupportedLayoutWidth": "auto",
+                "framerSupportedLayoutHeight": "auto",
+                "framerContractVersion": "1",
+                "framerDisableUnlink": ""
+            }
+        },
+        "__FramerMetadata__": {
+            "type": "variable"
+        }
+    }
+}
