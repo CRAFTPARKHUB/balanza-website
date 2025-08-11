@@ -48,13 +48,18 @@
 # Clean URL redirects - Hide Framer references
 [[redirects]]
   from = "/"
-  to = "/sk/"
+  to = "/extraordinary-acknowledge-696942.framer.app/sk/"
   status = 301
 
 [[redirects]]
   from = "/sk"
-  to = "/sk/"
+  to = "/extraordinary-acknowledge-696942.framer.app/sk/"
   status = 301
+
+[[redirects]]
+  from = "/sk/"
+  to = "/extraordinary-acknowledge-696942.framer.app/sk/"
+  status = 200
 
 [[redirects]]
   from = "/sk/*"
