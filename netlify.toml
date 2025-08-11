@@ -45,9 +45,14 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Redirects for Slovak locale - Clean URLs
+# Clean URL redirects - Hide Framer references
 [[redirects]]
   from = "/"
+  to = "/sk/"
+  status = 301
+
+[[redirects]]
+  from = "/sk"
   to = "/sk/"
   status = 301
 
