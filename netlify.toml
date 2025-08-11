@@ -45,29 +45,11 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Clean URL redirects - Hide Framer references
-[[redirects]]
-  from = "/"
-  to = "/extraordinary-acknowledge-696942.framer.app/sk/"
-  status = 301
+# Serve Slovak content directly at root - No Framer references visible
+# All content is now served from root directory
 
-[[redirects]]
-  from = "/sk"
-  to = "/extraordinary-acknowledge-696942.framer.app/sk/"
-  status = 301
-
-[[redirects]]
-  from = "/sk/"
-  to = "/extraordinary-acknowledge-696942.framer.app/sk/"
-  status = 200
-
-[[redirects]]
-  from = "/sk/*"
-  to = "/extraordinary-acknowledge-696942.framer.app/sk/:splat"
-  status = 200
-
-# Handle SPA routing fallback
+# Handle SPA routing fallback for any unmatched routes
 [[redirects]]
   from = "/*"
-  to = "/extraordinary-acknowledge-696942.framer.app/sk/index.html"
+  to = "/index.html"
   status = 200
